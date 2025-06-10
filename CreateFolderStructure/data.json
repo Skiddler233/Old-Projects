@@ -1,0 +1,9 @@
+{
+    "Comments" : ["If you are going to add clients to this file, put them in the right alphabetical order! Thanks"],
+    "clients": ["A.I.M.E", "BIG W", "CLIPSAL", "COLONIAL FIRST STATE", "COMMONWEALTH BANK", "COMMSEC","CPA","DOMAIN","HOUSE","KIDS HELP LINE","KPMG","LEXUS","LILLYDALE","MACKAY GOODWIN","NEW BUSINESS","NEWS COM","NSW TREASURY","OPTUS","PLUSH","RACING VICTORIA","RSPCA","SESION","STEGGLES","SYDNEY FILM FESTIVAL","SYDNEY FISH MARKET","TAB LIMITED","TOURISM AUSTRALIA","UNITING CARE","WOOLWORTHS"],
+    "woolworths_clients": ["test Client","Example Client", "Test Client 1", "Example Client 1"],
+    "business units": ["Brand", "Business", "Consumer", "Digital and Social Media", "Equities and Margin Lending", "Innovation", "MyWealth", "Sponsorship"],
+    "servers": ["woolworths", "Make"]
+
+}
+
