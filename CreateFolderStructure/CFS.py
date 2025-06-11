@@ -4,21 +4,21 @@ import json
 import pyperclip
 
 
-# Function: Loads the Client list from JSON file
+# Loads the Client list from JSON file
 def load_client_items():
     with open("data.json", "r") as file:
         data = json.load(file)
         return data["clients"]
 
 
-# Function: Loads the Business units from JSON file (Commonwealth Bank only)
+# Loads the Business units from JSON file (Commonwealth Bank only)
 def load_business_units():
     with open("data.json", "r") as file:
         data = json.load(file)
         return data["business units"]
 
 
-# Function: Checks if the there are at least one Sub Folder selected
+# Checks if the there are at least one Sub Folder selected
 def check_sub_folders(sub_folders):
     if len(sub_folders) == 0:
         wx.MessageBox("Please select at least one Job Type", "Error", wx.OK | wx.ICON_ERROR)
@@ -27,6 +27,7 @@ def check_sub_folders(sub_folders):
         return True
 
 
+# Initialise app frame
 class AppFrame(wx.Frame):
     def __init__(self, *args, **kw):
         super(AppFrame, self).__init__(*args, **kw)
@@ -215,6 +216,7 @@ class AppFrame(wx.Frame):
         # End of UI - Sizer
         panel.SetSizer(vbox)
 
+# Dropdown enable for Commonwealth bank client only
     def business_unit_enable(self, event):
         choice = self.client_dropdown.GetValue()
 
@@ -224,7 +226,7 @@ class AppFrame(wx.Frame):
         else:
             self.business_unit_dropdown.Disable()
 
-# Function 3
+# Check selected subfolders
     def selected_sub_folders(self):
         sub_folders = []
         if self.design_checkbox.GetValue():
@@ -239,7 +241,7 @@ class AppFrame(wx.Frame):
             sub_folders.append("TV")
         return sub_folders
 
-    # Function: Checks if the Text entry fields are populated
+    # Checks if the Text entry fields are populated
     def check_empty(self):
         # Retrieve values
         job_number = self.job_number_entry.GetValue()
@@ -257,7 +259,7 @@ class AppFrame(wx.Frame):
         else:
             return True
 
-    # Function: Check if illegal characters used in text entry
+    # Check if illegal characters used in text entry
     def illegal_char(self):
         # Retrieve values
         job_number = self.job_number_entry.GetValue()
@@ -278,7 +280,7 @@ class AppFrame(wx.Frame):
                 return False
         return True
 
-    # Function: Updates the "Campaign" dropdown based on the current 'Client' Selection
+    # Updates the "Campaign" dropdown based on the current 'Client' Selection
     def update_campaign(self, event):
         client = self.client_dropdown.GetValue()  # Retrieve 'Client' Selection
         business_unit = self.business_unit_dropdown.GetValue()
@@ -306,7 +308,7 @@ class AppFrame(wx.Frame):
         directories.insert(0, "New Campaign")
         self.campaign_dropdown.SetItems(directories)
 
-    # Function: Select and Deselect the 'Select All' Checkbox based on the state of the other checkboxes
+    # Select and Deselect the 'Select All' Checkbox based on the state of the other checkboxes
     def on_checkbox_change(self, event):
         # If any checkbox is unchecked, uncheck 'Select All'
         if not (self.design_checkbox.GetValue() and
@@ -319,7 +321,7 @@ class AppFrame(wx.Frame):
             # If all checkboxes are selected, check 'Select All'
             self.select_all_checkbox.SetValue(True)
 
-    # Function: Select all functionality - when 'Select All' is selected, check all boxes
+    # Select all functionality - when 'Select All' is selected, check all boxes
     def on_select_all(self, event):
         value = self.select_all_checkbox.GetValue()
         self.select_all_checkbox.SetValue(value)
@@ -329,7 +331,7 @@ class AppFrame(wx.Frame):
         self.studio_checkbox.SetValue(value)
         self.tv_checkbox.SetValue(value)
 
-    # Function: 'Submit Button' functionality
+    # 'Submit Button' functionality
     def on_submit(self, event):
         sub_folders = self.selected_sub_folders()
         # Ensures the fields are not empty and there are no illegal characters
@@ -378,12 +380,12 @@ class AppFrame(wx.Frame):
         # Set the 'Result' text box to reflect Created file path
         self.result_text.SetValue(full_parent_path)
 
-    # Function: Quits the Application
+    # Quits the Application
     def quit_button(self, event):
         print("Closed by user")
         exit(0)
 
-    # Function: Copies the 'Result' Text box to Clipboard
+    # Copies the 'Result' Text box to Clipboard
     def copy_path(self, event):
         result = self.result_text.GetValue()
         pyperclip.copy(result)
